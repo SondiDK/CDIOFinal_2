@@ -94,7 +94,7 @@ public class GameController {
 
 			showMessage(p.getPiece().getPlayerName()+" landed on " + bs.getGb().getField(p.getPiece().getPlacement()-1).getFieldName());
 
-			//afgoerer hvad der sker nåt du lander på et felt
+			//afgoerer hvad der sker
 			bs.getGb().getField(p.getPiece().getPlacement()-1).landOnField(p);
 
 			//chekcer om player lander på chance kort
@@ -169,7 +169,7 @@ public class GameController {
 	public void showMessage(String text){
 		gc.showMessage(text);
 	}
-	//tjekker om  spilleren er gået bankerot og tjekker om der kun er 1 spiller tilbage = game over
+
 	public void bankruptChecker(Player p){
 
 		if(p.getBalance()<0){
@@ -215,18 +215,17 @@ public class GameController {
 			p.getPiece().setPlacement(p.getPiece().getPlacement()+dc.getSum());
 			p.setailrounds(0);
 		}
-
 		else if(p.isJailed()){
-			showMessage("GOD DAMN IT");
-
+			showMessage("Sorry :(");
+			
 		}
 	}
 
 
-	//updater player score for alle spiller
-	public void updateScores () {
-		for(int j=0;j<playerArray.length;j++){
-			gc.updatesPlayerScore(playerArray[j]);
-		}
+//updater player score for alle spiller
+public void updateScores () {
+	for(int j=0;j<playerArray.length;j++){
+		gc.updatesPlayerScore(playerArray[j]);
 	}
+}
 }
