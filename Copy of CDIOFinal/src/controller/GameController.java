@@ -210,14 +210,15 @@ public class GameController {
 			showMessage("You couldnt get out after 3 tries, so you have to pay 1000$");
 			p.updateBalance(-1000);
 			p.setJailed(false);
-			removePiece(p);
-			movePiece(p,p.getPiece().getPlacement());
+			
 			p.getPiece().setPlacement(p.getPiece().getPlacement()+dc.getSum());
 			p.setailrounds(0);
+			removePiece(p);
+			movePiece(p,p.getPiece().getPlacement());
 		}
 
 		else if(p.isJailed()){
-			showMessage("Try again");
+			showMessage("Better luck next time!");
 
 		}
 	}
