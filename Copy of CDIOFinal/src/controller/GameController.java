@@ -190,8 +190,8 @@ public class GameController {
 	public void prisonMode(Player p){
 		if(p.isJailed()) {
 
-			showMessage("You're in jail and have to get 2 of the same to get out");
-			showMessage("Roll!");
+			showMessage("You're in jail and have to get 2 of the same to get out - click OK to roll!");
+			
 			dc.RollDices();
 			gc.setDices(dc);
 			p.addJailrounds();
@@ -217,7 +217,7 @@ public class GameController {
 		}
 
 		else if(p.isJailed()){
-			showMessage("GOD DAMN IT");
+			showMessage("Try again");
 
 		}
 	}
