@@ -25,7 +25,7 @@ public class GameController {
 		dc = new DiceCup();
 
 		gc.startGame();	
-		showMessage("Welcome to group 39's monopoly game of hammer of justice of doom league of hammer of frost wolves in enternal peacekeeper bo the great unknown legend from above the mighty seas of Dalaran sistercity in the world from the void of valhallas!");
+		showMessage("Welcome to group 39's monopoly game!");
 		// Finder ud af hvor mange spillere der er, og returnere det som en int
 		int numberOfPlayers = gc.GUIbuttons5("How  many players?", "2", "3", "4", "5", "6");
 
@@ -209,7 +209,7 @@ public class GameController {
 			p.setJailed(false);
 		}
 
-
+//hvis han ikke kan komme ud efter 3 forsøg
 		if(p.getJailrounds()==3){
 			showMessage("You couldnt get out after 3 tries, so you have to pay 1000$");
 			p.updateBalance(-1000);
