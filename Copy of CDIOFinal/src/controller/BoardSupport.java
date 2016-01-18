@@ -39,7 +39,6 @@ public class BoardSupport {
 			System.out.println("max series ownable" + h.getMaxSeries());
 
 			if(owner == p && p.getSpecificSerialChecker(h.getSerialNumber()-1)==h.getMaxSeries()){
-				System.out.println("we made it in");
 				result =  true;
 			}
 		}

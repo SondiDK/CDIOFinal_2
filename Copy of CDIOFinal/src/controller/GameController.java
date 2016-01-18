@@ -16,10 +16,12 @@ public class GameController {
 	private BoardSupport bs;
 	private int bankruptCounter;
 	//this is for test
-	boolean testingmode = true;
+	boolean testingmode = false;
 
+	//Starter spillet
 	public void RunGame(){
 
+		//opretter noedtvendige objekter
 		bs = new BoardSupport();
 		gc = new GUIController(bs.getGb());
 		dc = new DiceCup();
@@ -46,11 +48,8 @@ public class GameController {
 					if ( playerArray[j].isDoubleTurn() ){
 						playerArray[j].setDoubleTurn(false);
 						j--;
-						
-					}
-						
+					}	
 				}
-
 			}
 		}
 	}
@@ -66,8 +65,9 @@ public class GameController {
 			//kaster med terning
 			dc.RollDices();
 
-			//saetter ternings ï¿½jne pï¿½ GUI
+			//saetter ternings oejne paa GUI
 			gc.setDices(dc);
+			//hvis player slaar to ens = ekstra tur
 			if(dc.getDice(1) == dc.getDice(2))
 				p.setDoubleTurn(true);
 			// tilfoejer slaget til spillerens totale sum
@@ -98,7 +98,7 @@ public class GameController {
 
 			showMessage(p.getPiece().getPlayerName()+" landed on " + bs.getGb().getField(p.getPiece().getPlacement()-1).getFieldName());
 
-			//afgoerer hvad der sker nåt du lander på et felt
+			//afgoerer hvad der sker naar du lander på et felt
 			bs.getGb().getField(p.getPiece().getPlacement()-1).landOnField(p);
 
 			//chekcer om player lander på chance kort
@@ -143,7 +143,7 @@ public class GameController {
 
 				Field[] f = bs.getGb().getFields();
 				Field currentField = f[number];
-			
+
 				//Checker om du ejer feltet du vil koebe huse på
 				if(bs.buyHouse(p, number)&& bs.houseChecker(p)&& currentField instanceof Houseable){
 					Houseable h = ((Houseable) currentField);
@@ -173,34 +173,35 @@ public class GameController {
 	public void showMessage(String text){
 		gc.showMessage(text);
 	}
-	//tjekker om  spilleren er gået bankerot og tjekker om der kun er 1 spiller tilbage = game over
+
+	//tjekker om  spilleren er gaaet bankerot og tjekker om der kun er 1 spiller tilbage = game over
 	public void bankruptChecker(Player p){
 
+		//hvis player har negativ balance = bankrupt
 		if(p.getBalance()<0){
 			p.setBankrupt(true);
 			showMessage(p.getPiece().getPlayerName() + "is dead");
 			bankruptCounter++;
 			gc.remooveCar(p);
 		}
-
+		//hvis der kun er en spiller tilbage sluttes spillet. der er fundet vinder
 		if(bankruptCounter>=(playerArray.length-1)){
 			winner =  true;
 			showMessage("Game over!");
 			gc.closeGame();
 		}
 	}
-
 	//Naar spiller er i faengsel ser runden saadan ud
 	public void prisonMode(Player p){
 		if(p.isJailed()) {
-
 			showMessage("You're in jail and have to get 2 of the same to get out - click OK to roll!");
-			
+
 			dc.RollDices();
 			gc.setDices(dc);
 			p.addJailrounds();
 		}
 
+		//hvis der slaaes to ens, kommer man ud af faengsel
 		if (p.isJailed() && dc.getDice(1) == dc.getDice(2)) {
 			showMessage("You got out!");
 			p.getPiece().setPlacement(p.getPiece().getPlacement()+dc.getSum());
@@ -209,24 +210,23 @@ public class GameController {
 			p.setJailed(false);
 		}
 
-//hvis han ikke kan komme ud efter 3 forsøg
+		//hvis han ikke kan komme ud efter 3 forsøg
 		if(p.getJailrounds()==3){
 			showMessage("You couldnt get out after 3 tries, so you have to pay 1000$");
 			p.updateBalance(-1000);
 			p.setJailed(false);
-			
+
 			p.getPiece().setPlacement(p.getPiece().getPlacement()+dc.getSum());
 			p.setailrounds(0);
 			removePiece(p);
 			movePiece(p,p.getPiece().getPlacement());
 		}
 
+		//Hvis player ikke slaar to ens i faengsel
 		else if(p.isJailed()){
 			showMessage("Better luck next time!");
-
 		}
 	}
-
 
 	//updater player score for alle spiller
 	public void updateScores () {
@@ -235,3 +235,4 @@ public class GameController {
 		}
 	}
 }
+
