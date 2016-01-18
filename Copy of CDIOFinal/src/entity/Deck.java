@@ -4,9 +4,10 @@ public class Deck {
 
 	private  Cards[] deck;
 	
-	
+	//konstruktor
 	public Deck () {
 		
+		//array der indeholder alle forskellige kort
 		this.deck = new Cards[] {
 				new Cards("Du har vundet 500 kr. i klasselotteriet, gz", 500, 1),
 				new Cards("Du har vundet 500 kr. i klasselotteriet, gz", 500, 1),
@@ -47,6 +48,8 @@ public class Deck {
 		
 	}
 
+	
+	//get & set metoder
 	public int getDeckLength () {
 		return deck.length;
 	}

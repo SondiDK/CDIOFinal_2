@@ -7,14 +7,17 @@ public class Cards {
 	private int amount;
 	private int type;
 	
-	//type 1(+ & - beloeb) & 2(ryk til bestemt felt)
+	//konstruktor
 		public Cards(String description, int amount, int type) {
 			this.description = description;
 			this.amount = amount;
 			this.type = type;
 		}
+		
+		//bestemmer hvilket salgs kort vi har fat i
 		public void chance ( Player player) {
-	//forskellige typer kort
+			
+			//forskellige typer kort
 			switch ( type ) {
 			//faa eller betal penge
 			case 1: 
@@ -29,10 +32,8 @@ public class Cards {
 				player.getPiece().addPlacement(amount);
 			}
 		}
-		public String getDescription() {
-			return description;
-		}
-		public void setDescription(String description) {
-			this.description = description;
-		}
+		
+		//get & set metoder
+		public String getDescription() {return description;}
+		public void setDescription(String description) {this.description = description;}
 }

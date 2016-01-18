@@ -10,16 +10,14 @@ public class Chance extends Field {
 	public Chance(String fieldName, Color backgroundColor, String description) {
 		super(fieldName, backgroundColor, description);
 	}
-	
 
-	
+	//abstrakt ned arvet metode som skal defineres
 	@Override
 	public void landOnField(Player player) {
-		
-		
-		
 	}
 
+	
+	//get & set metoder
 	public void setAmount( int amount) {
 		this.amount = amount;
 	}
