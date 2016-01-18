@@ -25,7 +25,7 @@ public class GameController {
 		dc = new DiceCup();
 
 		gc.startGame();	
-		showMessage("Welcome to the monopoly!");
+		showMessage("Welcome to group 39's monopoly game of hammer of justice of doom league of hammer of frost wolves in enternal peacekeeper bo the great unknown legend from above the mighty seas of Dalaran sistercity in the world from the void of valhallas!");
 		// Finder ud af hvor mange spillere der er, og returnere det som en int
 		int numberOfPlayers = gc.GUIbuttons5("How  many players?", "2", "3", "4", "5", "6");
 
@@ -43,8 +43,12 @@ public class GameController {
 				if(!winner){
 					showMessage("Player " + (j+1) +  " click OK to roll");	
 					playRound(playerArray[j]);
-					if ( playerArray[j].isDoubleTurn() )
+					if ( playerArray[j].isDoubleTurn() ){
+						playerArray[j].setDoubleTurn(false);
 						j--;
+						
+					}
+						
 				}
 
 			}
@@ -131,7 +135,7 @@ public class GameController {
 
 		//Bliver ved med at spoeger indtil man siger no
 		do{
-			answer = gc.showMesseageYesNo("Does" + p.getPiece().getPlayerName() + "want a house?", "Yes", "No");
+			answer = gc.showMesseageYesNo("Does " + p.getPiece().getPlayerName() + " want a house?", "Yes", "No");
 
 			if(answer.equals("Yes")){
 				int number = askFieldNum("Which field do you want to  add a house on " + p.getPiece().getPlayerName())-1;
@@ -139,10 +143,10 @@ public class GameController {
 
 				Field[] f = bs.getGb().getFields();
 				Field currentField = f[number];
-				Houseable h = ((Houseable) currentField);
+			
 				//Checker om du ejer feltet du vil koebe huse på
-				if(bs.buyHouse(p, number)){
-
+				if(bs.buyHouse(p, number)&& bs.houseChecker(p)&& currentField instanceof Houseable){
+					Houseable h = ((Houseable) currentField);
 					//houseAmount er antal huse du koeber i denne runde 
 					int houseAmount = gc.setHouse(p,number+1,h.getHouseCount())-h.getHouseCount();
 
@@ -160,11 +164,11 @@ public class GameController {
 				}
 				//Hvis man ikke ejer feltet
 				else{
-					showMessage("You dont own the complete series!");
+					showMessage("You can't do that!");
 					System.out.println(bs.getGb().getField(number));
 				}
 			}
-		}while(answer.equals("yes"));
+		}while(answer.equals("Yes"));
 	}
 	public void showMessage(String text){
 		gc.showMessage(text);
