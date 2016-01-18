@@ -39,10 +39,7 @@ public class Soda  extends Ownable {
 				}
 			}
 			else{
-				System.out.println("landen on owned");
 				System.out.println("owner count" + owner.getSodaCount());
-				System.out.println("placement" + player.getPiece().getPlacement());
-				System.out.println(getRent());
 				int rent = player.getPiece().getLastDiceSum()*owner.getSodaCount()*getRent();
 				System.out.println("rent" +  rent);
 				player.updateBalance(-rent);

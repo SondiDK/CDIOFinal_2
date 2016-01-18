@@ -11,7 +11,7 @@ public class Jail extends Field {
 
 	@Override
 	public void landOnField(Player player) {
-
+//places the player in jail and sets jail to true for the player
 		player.setJailed(true);
 		player.getPiece().setPlacement(11);
 		

@@ -23,6 +23,7 @@ public class Piece {
 		return "Player " + playerNumber;
 	}
 
+	// spilleresns placering, der sikrer han ikke lander på et felt over 40
 	public int getPlacement() {
 		if(placement>40){
 			placement -= 40;
@@ -33,7 +34,7 @@ public class Piece {
 		}
 		return placement;
 	}	
-
+// get og set metoder
 	public void addPlacement(int placement) {	this.placement += placement; }	
 	
 	public void setPlacement ( int placement ) {

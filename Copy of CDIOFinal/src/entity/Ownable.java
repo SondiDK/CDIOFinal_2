@@ -19,9 +19,10 @@ public abstract class Ownable extends Field {
 		this.isOwned = false;
 		this.rent = rent;
 	}
-	// abstrakt klasse som defineres i de forskellige nedavninger
+	// abstrakt metode som defineres i de forskellige nedavninger
 	public abstract int getRent();
 	
+	// købs processen for et felt
 	public boolean askBuy(Player player){
 		boolean result = false;
 		String answer = GUI.getUserButtonPressed("Does " + player.getPiece().getPlayerName()+  " want to buy " +getFieldName() + "?" ,"Yes","No");
