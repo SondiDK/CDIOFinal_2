@@ -23,7 +23,7 @@ public class GUIController {
 	private Car car4 = setCar(Color.PINK, Color.GREEN);
 	private Car car5 = setCar(Color.CYAN, Color.BLACK);
 	private Car car6 = setCar(Color.WHITE, Color.MAGENTA);
-	
+
 	GUIController(GameBoard g){
 		this.g = g;
 	}
@@ -98,33 +98,32 @@ public class GUIController {
 		GUI.removeAllCars(p.getPiece().getPlayerName());
 	}
 	//slutter brik
-	
 
+	//tilføjer hus til en grund og, hvis der er 5 et hotel
 	public int setHouse(Player p, int field, int houseCount){
-		int swag = (GUI.getUserInteger("How many?", 1, 5))+houseCount;
-		GUI.setHouses(field, swag);
-		if(swag==5)
+		int number = (GUI.getUserInteger("How many?", 1, 5))+houseCount;
+		GUI.setHouses(field, number);
+		if(number==5)
 			GUI.setHotel(field, true);
-		return swag;
+		return number;
 	}
-	
-	public void setHotel(Player p, int field){
-		GUI.setHotel(field, true);
-	}
-	
+
+	//spørger om et nummer	
 	public int NumberAsk(String text){
-		
+
 		int fieldNumber = GUI.getUserInteger(text);
 		return fieldNumber;	 
 	}
-	
+
+	//Spørger og givet 2 svarmuligheder
 	public String showMesseageYesNo(String question, String answer1, String answer2){
-		 return GUI.getUserButtonPressed(question,answer1,answer2);
+		return GUI.getUserButtonPressed(question,answer1,answer2);
 	}
-		
+	// lukker gui'en
 	public void closeGame(){
 		GUI.close();
 	}
+	// viser chancekords beskrivelse
 	public void showChance(String descrip){
 		GUI.displayChanceCard(descrip);
 	}
