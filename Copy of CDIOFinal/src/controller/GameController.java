@@ -16,7 +16,7 @@ public class GameController {
 	private BoardSupport bs;
 	private int bankruptCounter;
 	//this is for test
-	boolean testingmode = false;
+	boolean testingmode = true;
 
 	//Starter spillet
 	public void RunGame(){
@@ -36,6 +36,10 @@ public class GameController {
 		for (int i = 0 ; i <= numberOfPlayers - 1 ; i++) {
 			playerArray[i] = new Player();
 		}
+		// for bankerot rest
+//		for (int i = 1; i < playerArray.length; i++) {
+//			playerArray[i].setBalance(2500);
+//		}
 
 		//kører spilrunden for hver spiller så længe, der ikke er en vinder og springer dig over hvis du bankerot
 		while(!winner){
